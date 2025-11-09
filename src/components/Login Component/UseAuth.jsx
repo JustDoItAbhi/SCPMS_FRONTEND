@@ -13,7 +13,18 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // ✅ Use environment variable for API base URL
-    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+    // const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+    const getBaseURL = () => {
+  const url = import.meta.env.VITE_API_URL;
+  
+  if (url === '') {
+    return ''; // Relative URLs in production
+  }
+  
+  return url || 'http://localhost:8080'; // Default to localhost for development
+};
+
+const API_BASE_URL = getBaseURL();
 
     useEffect(() => {
         checkAuthStatus();
