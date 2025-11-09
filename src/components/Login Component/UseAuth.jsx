@@ -64,12 +64,15 @@ export const AuthProvider = ({ children }) => {
         formData.append('email', email);
         formData.append('password', password);
 
-        const response = await axios.post("http://localhost:8080/api/auth/login", formData, {
+        const response = await axios.post("https://scpms-frontend.onrender.com/api/auth/login", formData, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             withCredentials: true
         });
+        if(!response){
+            console.log("ERROR",formData);
+        }
             
             console.log("AUTH RESPONSE ", response.data);
             const { token, user: userData } = response.data;
