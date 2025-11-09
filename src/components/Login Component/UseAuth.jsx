@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
     console.log("Frontend URL:", window.location.href);
     console.log("API_BASE_URL:", API_BASE_URL);
-    console.log("Full login URL will be:", `https://scpms-frontend.onrender.com/api/auth/login`);
+    console.log("Full login URL will be:", import.meta.env.VITE_BASE_URL);
 
     useEffect(() => {
         checkAuthStatus();
