@@ -8,8 +8,10 @@ const OauthLoginForm = () => {
   console.log("4TH REQUEST OAUTH LOGIN FORM")
 
 
-  const oauthUrl = `http://localhost:8080/oauth2/authorize?response_type=code&client_id=render&redirect_uri=
-  ${REDIRECT_URI}&scope=openid profile`;
+  <a
+href = "http://localhost:8080/oauth2/authorize?response_type=code&client_id=render&redirect_uri=https://scpms-frontend.onrender.com/callback&scope=openid profile"
+
+>
 
   return (
     <div style={{ textAlign: 'center', marginTop: '100px' }}>
