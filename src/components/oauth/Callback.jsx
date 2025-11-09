@@ -7,7 +7,7 @@ const Callback = () => {
   console.log("call back");
 
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-  const REDIRECT_URI = import.meta.env.PROD ? 'https://scpms-frontend.onrender.com/callback'  : 'http://localhost:5173/callback';
+  const REDIRECT_URI = import.meta.env.PROD ? 'https://unvocalized-irretrievably-roman.ngrok-free.dev'  : 'http://localhost:5173/callback';
 
 
   const handleTokenExchange = async (code) => {
@@ -28,7 +28,7 @@ const Callback = () => {
         
         // ✅ FIXED: Use proper string interpolation
         const response = await axios.post(
-            'https://scpms-frontend.onrender.com/oauth2/token',  // Fixed backticks
+            'https://unvocalized-irretrievably-roman.ngrok-free.dev/oauth2/token',  // Fixed backticks
             params,
             {
                 headers: {

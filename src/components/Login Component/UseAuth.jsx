@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
     const testing=async()=>{
         try{
-            const checking=await axios.get("https://scpms-frontend.onrender.com/api/debug/cors");
+            const checking=await axios.get("https://unvocalized-irretrievably-roman.ngrok-free.dev/api/debug/cors");
             console.log("debug test ", checking.data);
         }catch(err){
             console.log(err.message);
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         formData.append('password', password);
                 console.log("ERROR",formData);
 
-        const response = await axios.post("https://scpms-frontend.onrender.com/api/auth/login", formData, {
+        const response = await axios.post("https://unvocalized-irretrievably-roman.ngrok-free.dev/api/auth/login", formData, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

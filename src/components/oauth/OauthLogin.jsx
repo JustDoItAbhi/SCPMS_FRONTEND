@@ -35,13 +35,13 @@ const OauthLogin = () => {
     const params = new URLSearchParams({
       response_type: "code",
       client_id: "abhi",
-      redirect_uri: 'https://scpms-frontend.onrender.com/callback',
+      redirect_uri: 'https://unvocalized-irretrievably-roman.ngrok-free.dev/callback',
       scope: "openid profile",
     });
     
     console.log("1st step call login oauth2 server REQUEST");
     
-    const authUrl =  window.location.href = `https://scpms-frontend.onrender.com/oauth2/authorize?${params}`;
+    const authUrl =  window.location.href = `https://unvocalized-irretrievably-roman.ngrok-free.dev/oauth2/authorize?${params}`;
     console.log("Redirecting to:", authUrl);
     
     window.location.href = authUrl;
