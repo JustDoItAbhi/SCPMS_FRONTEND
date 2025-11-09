@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
     // ✅ Use environment variable for API base URL
     const getBaseURL = () => {
-        const url = "https://scpms-backend.onrender.com";
+        const url = "https://scpms-frontend.onrender.com";
         console.log(url);
         
         if (url === '') {
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     // ✅ Debug: Check what URL we're using
     console.log("Frontend URL:", window.location.href);
     console.log("API_BASE_URL:", API_BASE_URL);
-    console.log("Full login URL will be:", `${API_BASE_URL}/api/auth/login`);
+    console.log("Full login URL will be:", `https://scpms-frontend.onrender.com/api/auth/login`);
 
     useEffect(() => {
         checkAuthStatus();
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
             formData.append('password', password);
 
             // ✅ FIXED: Use API_BASE_URL instead of hardcoded localhost
-            const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData, {
+            const response = await axios.post(`https://scpms-frontend.onrender.com/api/auth/login`, formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post(`${API_BASE_URL}/api/auth/logout`, {}, {
+            await axios.post(`https://scpms-frontend.onrender.com/api/auth/logout`, {}, {
                 withCredentials: true
             });
         } catch (error) {
