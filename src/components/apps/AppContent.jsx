@@ -50,7 +50,7 @@ function AppContent() {
 
       <Routes>
         {/* Public routes */}
-        <Route path="/" element={<OauthLoginForm />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<AuthLogin />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/callback" element={<Callback />} />
