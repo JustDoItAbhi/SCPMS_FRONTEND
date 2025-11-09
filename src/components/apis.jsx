@@ -138,17 +138,21 @@ export const DeleteSubject=async(id)=>{
 }
 
 
-export const GetUserById=async(id)=>{
-    try{
-        const response=await axiosInstance.get(`/api/user/getUserById/${id}`);
-        console.log(" USERS BY ID",response.data)
-        console.log("user email",response.data.email);
-        localStorage.setItem("userEmail",response.data.email);
-        return response
-    }catch(err){
-        console.log(err.message);
+export const GetUserById = async (userId) => {
+    try {
+        console.log("🔍 Calling GetUserById with userId:", userId);
+        const response = await axiosInstance.get(`/api/user/getUserById/${userId}`);
+        console.log("✅ GetUserById response:", response);
+        return response;
+    } catch (error) {
+        console.error("❌ GetUserById error:", {
+            status: error.response?.status,
+            data: error.response?.data,
+            message: error.message
+        });
+        throw error; // Re-throw to handle in the component
     }
-}
+};
 
  export const SendOTP=async(email)=>{
     try{
