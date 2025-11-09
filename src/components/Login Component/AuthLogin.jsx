@@ -27,83 +27,33 @@ const AuthLogin = () => {
         setLoading(true);
         setError('');
 
-       try {
-        const response = await login(formData.email, formData.password);
-        console.log("LOGIN RESPONSE ", response);
+        try {
+            const response = await login(formData.email, formData.password);
+            console.log("LOGIN RESPONSE ", response);
 
-        if (response && response.token) {
-            console.log("Login successful, redirecting...", response);
+            if (response && response.token) {
+                console.log("Login successful, redirecting...", response);
 
-            const userData = JSON.parse(localStorage.getItem('user'));
-            console.log("USER DATA FROM LOCALSTORAGE:", userData);
-            
-            if (userData && userData.id) {
-                const userId = userData.id;
+                const userData = JSON.parse(localStorage.getItem('user'));
+                console.log("USER ID", userData?.id)
+                const userId = userData?.id
                 localStorage.setItem("userId", userId);
 
-                console.log("🔍 Before GetUserById call, userId:", userId);
-                
-                try {
+                if (userData && userData.id) {
+                    const userId = localStorage.getItem("userId");
+   
+
+            console.log("🔍 Before GetUserById call, userId:", userId);
                     const getUser = await GetUserById(userId);
-                    console.log("🔍 FULL API RESPONSE:", getUser);
+                    console.log("userId", userId)
+                    // console.log("get user from local , ", getUser.data.rolesList[0]);
+              console.log("🔍 FULL API RESPONSE STRUCTURE:", getUser);
 
-                    // ✅ SAFE ACCESS - Check if data exists before accessing
-                    if (!getUser || !getUser.data) {
-                        console.warn("⚠️ GetUserById returned no data");
-                        // Use role from login response as fallback
-                        const fallbackRole = userData.roles?.[0] || "STUDENT";
-                        handleNavigation(fallbackRole);
-                        return;
-                    }
-
-                    console.log("🔍 rolesList exists:", !!getUser?.data?.rolesList);
-                    console.log("🔍 rolesList value:", getUser?.data?.rolesList);
-                    
-                    // ✅ SAFE ROLE EXTRACTION
-                    let userRole = "STUDENT"; // Default fallback
-                    
-                    if (getUser.data.rolesList && getUser.data.rolesList.length > 0) {
-                        const firstRole = getUser.data.rolesList[0];
-                        userRole = firstRole?.roles || firstRole?.role || firstRole;
-                        console.log("✅ Extracted role from rolesList:", userRole);
-                    } else if (getUser.data.role) {
-                        userRole = getUser.data.role;
-                        console.log("✅ Using role from data.role:", userRole);
-                    } else if (getUser.data.roles && getUser.data.roles.length > 0) {
-                        userRole = getUser.data.roles[0];
-                        console.log("✅ Using role from data.roles:", userRole);
-                    } else {
-                        console.warn("⚠️ No role found in response, using default STUDENT");
-                    }
-
-                    console.log("USER ROLE:", userRole);
-                    handleNavigation(userRole);
-                    
-                } catch (apiError) {
-                    console.error("❌ GetUserById API call failed:", apiError);
-                    // Use role from login response as fallback
-                    const fallbackRole = userData.roles?.[0] || "STUDENT";
-                    console.log("🔄 Using fallback role due to API error:", fallbackRole);
-                    handleNavigation(fallbackRole);
-                }
-            } else {
-                console.error("No user data or user ID found");
-                navigate("/dashboard"); // Default fallback
-            }
-        }
-    } catch (err) {
-        console.error("Login error:", err);
-        setError(err.response?.data?.error || err.message || 'Login failed');
-    } finally {
-        setLoading(false);
-    }
-};
-
-// ✅ Extract navigation logic to separate function
-const handleNavigation = (userRole) => {
-    const studentId = localStorage.getItem("studentId");
-    console.log("🎯 Navigation - Role:", userRole, "Student ID:", studentId);
-                        if (!studentId && studentId === "undefined") {
+                    const role = getUser?.rolesList[0];
+                    const userRole = role?.roles || role?.[0];
+                    console.log("USER ROLE ", userRole);
+                    const studentId = localStorage.getItem("studentId");
+                    if (!studentId && studentId === "undefined") {
                         navigate("/STUDENTSIGNUP")
                     } else if (studentId) {
                         navigate("/Student-dashboard")
@@ -146,8 +96,16 @@ const handleNavigation = (userRole) => {
                         }
                     }
                 }
-}
+            }
 
+        } catch (err) {
+                        console.error("Login error:", err);
+                        setError(err.response?.data?.error || err.message || 'Login failed');
+                    } finally {
+                        setLoading(false);
+                    }
+                
+            }
 
                 return (
                     <div className="login-container">
