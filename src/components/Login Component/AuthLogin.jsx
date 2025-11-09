@@ -39,16 +39,19 @@ const AuthLogin = () => {
                 const userId = userData?.id
                 localStorage.setItem("userId", userId);
 
-                if (userData) {
+                if (userData && userData.id) {
                     const userId = localStorage.getItem("userId");
-                    console.log("🔍 FULL API RESPONSE STRUCTURE:", getUser);
+   
+
+            console.log("🔍 Before GetUserById call, userId:", userId);
+                    const getUser = await GetUserById(userId);
+                    console.log("userId", userId)
+                    // console.log("get user from local , ", getUser.data.rolesList[0]);
+              console.log("🔍 FULL API RESPONSE STRUCTURE:", getUser);
 console.log("🔍 rolesList exists:", !!getUser?.data?.rolesList);
 console.log("🔍 rolesList type:", typeof getUser?.data?.rolesList);
 console.log("🔍 rolesList value:", getUser?.data?.rolesList);
 console.log("🔍 rolesList length:", getUser?.data?.rolesList?.length);
-                    const getUser = await GetUserById(userId);
-                    console.log("userId", userId)
-                    // console.log("get user from local , ", getUser.data.rolesList[0]);
                     const role = getUser.data.rolesList[0];
                     const userRole = role?.roles || role?.[0];
                     console.log("USER ROLE ", userRole);
