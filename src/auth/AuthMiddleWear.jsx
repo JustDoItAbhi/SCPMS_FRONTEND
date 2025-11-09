@@ -1,10 +1,11 @@
 import axios from 'axios';
 import validateToken from "../components/apps/validateToken";
 
-// Create axios instance
+
 const getBaseURL = () => {
-  return `https://scpms-frontend.onrender.com` ? '' : 'http://localhost:8080';
+  return import.meta.env.VITE_API_URL || 'http://localhost:8080';
 };
+
 const axiosInstance = axios.create({
   baseURL: getBaseURL(),
   timeout: 10000,

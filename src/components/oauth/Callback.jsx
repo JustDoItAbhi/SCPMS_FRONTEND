@@ -11,30 +11,37 @@ const Callback = () => {
 
 
   const handleTokenExchange = async (code) => {
-      const clientId = import.meta.env.VITE_CLIENT_ID;
-  const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
-  
-    console.log("6TH REQUEST",clientId, "secret ",clientSecret);
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    
+    console.log("6TH REQUEST", clientId, "secret ", clientSecret);
     try {
-      const params = new URLSearchParams();
-      params.append('grant_type', 'authorization_code');
-      params.append('code', code);
-      params.append('redirect_uri', REDIRECT_URI); 
-      params.append('client_id', clientId);
+        const params = new URLSearchParams();
+        params.append('grant_type', 'authorization_code');
+        params.append('code', code);
+        params.append('redirect_uri', REDIRECT_URI); 
+        params.append('client_id', clientId);
 
-      console.log("7TH REQUEST");
-      const response = await axios.post(
-        '${API_BASE_URL}/oauth2/token',
-        params,
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`)
+        console.log("7TH REQUEST");
+        
+        // ✅ FIXED: Use proper string interpolation
+        const response = await axios.post(
+            `${API_BASE_URL}/oauth2/token`,  // Fixed backticks
+            params,
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`)
+                }
+            }
+        );
 
-          }
-        }
-      );
-
+        console.log("8TH REQUEST", response);
+        // ... rest of your code
+    } catch (error) {
+        console.error('Token exchange error:', error.response?.data || error.message);
+    }
+};
       console.log("8TH REQUEST", response);
 
       // Extract the access token properly

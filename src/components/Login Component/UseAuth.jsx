@@ -12,23 +12,10 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // ✅ Use environment variable for API base URL
-    const getBaseURL = () => {
-        const url = "https://scpms-frontend.onrender.com";
-        console.log(url);
-        
-        if (url === '') {
-            console.log("Using relative URLs");
-            return ''; // Relative URLs in production
-        }
-        
-        return url || 'http://localhost:8080'; // Default to localhost for development
-    };
+       const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
-    const API_BASE_URL = getBaseURL();
     console.log("API URL ",API_BASE_URL)
 
-    // ✅ Debug: Check what URL we're using
     console.log("Frontend URL:", window.location.href);
     console.log("API_BASE_URL:", API_BASE_URL);
     console.log("Full login URL will be:", `https://scpms-frontend.onrender.com/api/auth/login`);
@@ -59,20 +46,19 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const login = async (email, password) => {
-        console.log("useAUTH LOGIN PAGE ")
-        try {
-            const formData = new URLSearchParams();
-            formData.append('email', email);
-            formData.append('password', password);
+   const login = async (email, password) => {
+    console.log("useAUTH LOGIN PAGE")
+    try {
+        const formData = new URLSearchParams();
+        formData.append('email', email);
+        formData.append('password', password);
 
-            // ✅ FIXED: Use API_BASE_URL instead of hardcoded localhost
-            const response = await axios.post(`http://localhost:8080/api/auth/login`, formData, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                withCredentials: true
-            });
+        const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            withCredentials: true
+        });
             
             console.log("AUTH RESPONSE ", response.data);
             const { token, user: userData } = response.data;
