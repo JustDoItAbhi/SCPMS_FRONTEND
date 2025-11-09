@@ -63,6 +63,7 @@ export const AuthProvider = ({ children }) => {
         const formData = new URLSearchParams();
         formData.append('email', email);
         formData.append('password', password);
+                console.log("ERROR",formData);
 
         const response = await axios.post("https://scpms-frontend.onrender.com/api/auth/login", formData, {
             headers: {
