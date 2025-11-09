@@ -112,7 +112,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post(`https://scpms-frontend.onrender.com/api/auth/logout`, {}, {
+            await axios.post(`https://unvocalized-irretrievably-roman.ngrok-free.dev/api/auth/logout`, {}, {
                 withCredentials: true
             });
         } catch (error) {
