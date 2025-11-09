@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-       const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+       const API_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
 
     console.log("API URL ",API_BASE_URL)
 
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
             return response.data;
             
         } catch (error) {
-            console.log("Login error:", error);
+            console.log("Login error:", error.message);
             throw error;
         }
     };
