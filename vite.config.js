@@ -8,9 +8,20 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: process.env.PORT || 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   },
   preview: {
     host: '0.0.0.0',
     port: process.env.PORT || 4173,
+    allowedHosts: [
+      'scpms-frontend.onrender.com',
+      'localhost'
+    ]
   }
 })
