@@ -13,19 +13,24 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // ✅ Use environment variable for API base URL
-    // const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
     const getBaseURL = () => {
-  const url = import.meta.env.VITE_API_URL;
-  
-  if (url === '') {
-    console.log("url ",url);
-    return ''; // Relative URLs in production
-  }
-  
-  return url || 'http://localhost:8080'; // Default to localhost for development
-};
+        const url = "https://unvocalized-irretrievably-roman.ngrok-free.dev";
+        console.log(url);
+        
+        if (url === '') {
+            console.log("Using relative URLs");
+            return ''; // Relative URLs in production
+        }
+        
+        return url || 'http://localhost:8080'; // Default to localhost for development
+    };
 
-const API_BASE_URL = getBaseURL();
+    const API_BASE_URL = getBaseURL();
+
+    // ✅ Debug: Check what URL we're using
+    console.log("Frontend URL:", window.location.href);
+    console.log("API_BASE_URL:", API_BASE_URL);
+    console.log("Full login URL will be:", `${API_BASE_URL}/api/auth/login`);
 
     useEffect(() => {
         checkAuthStatus();
@@ -37,7 +42,6 @@ const API_BASE_URL = getBaseURL();
             const userData = localStorage.getItem('user');
             
             if (token && userData) {
-                // Set the authorization header
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 setUser(JSON.parse(userData));
             } else {
@@ -61,8 +65,8 @@ const API_BASE_URL = getBaseURL();
             formData.append('email', email);
             formData.append('password', password);
 
-            // ✅ Use environment variable instead of hardcoded URL
-            const response = await axios.post(`http://localhost:8080/api/auth/login`, formData, {
+            // ✅ FIXED: Use API_BASE_URL instead of hardcoded localhost
+            const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
