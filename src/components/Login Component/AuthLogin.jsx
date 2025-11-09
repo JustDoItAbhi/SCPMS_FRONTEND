@@ -34,13 +34,14 @@ const AuthLogin = () => {
             if (response && response.token) {
                 console.log("Login successful, redirecting...", response);
 
-                // Get user ID from the stored user data
                 const userData = JSON.parse(localStorage.getItem('user'));
                 console.log("USER ID", userData?.id)
                 const userId = userData?.id
                 localStorage.setItem("userId", userId);
+
                 if (userData) {
                     const userId = localStorage.getItem("userId");
+                     console.log("GetUser response:", getUser);
                     const getUser = await GetUserById(userId);
                     console.log("userId", userId)
                     // console.log("get user from local , ", getUser.data.rolesList[0]);

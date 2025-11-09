@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     const testing=async()=>{
         try{
             const checking=await axios.get("https://unvocalized-irretrievably-roman.ngrok-free.dev/api/debug/cors");
-            console.log("debug test ", checking.data);
+            console.log("debug test ", checking);
         }catch(err){
             console.log(err.message);
         }
