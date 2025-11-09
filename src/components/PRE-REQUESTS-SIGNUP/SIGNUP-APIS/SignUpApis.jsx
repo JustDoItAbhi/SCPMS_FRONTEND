@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api/user"
+const BASE_URL = "https://unvocalized-irretrievably-roman.ngrok-free.dev/api/user"
 
 export const StudentSendingOtpForSignUP = async (values) => {
     try {
