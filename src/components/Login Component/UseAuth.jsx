@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
     // ✅ Use environment variable for API base URL
     const getBaseURL = () => {
-        const url = "https://unvocalized-irretrievably-roman.ngrok-free.dev";
+        const url = "https://scpms-backend.onrender.com";
         console.log(url);
         
         if (url === '') {
@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const API_BASE_URL = getBaseURL();
+    console.log("API URL ",API_BASE_URL)
 
     // ✅ Debug: Check what URL we're using
     console.log("Frontend URL:", window.location.href);
