@@ -6,6 +6,10 @@ const Callback = () => {
   const navigate = useNavigate();
   console.log("call back");
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  const REDIRECT_URI = import.meta.env.PROD ? 'https://scpms-frontend.onrender.com/callback'  : 'http://localhost:5173/callback';
+
+
   const handleTokenExchange = async (code) => {
       const clientId = import.meta.env.VITE_CLIENT_ID;
   const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -15,12 +19,12 @@ const Callback = () => {
       const params = new URLSearchParams();
       params.append('grant_type', 'authorization_code');
       params.append('code', code);
-      params.append('redirect_uri', 'http://localhost:5173/callback'); 
+      params.append('redirect_uri', REDIRECT_URI); 
       params.append('client_id', clientId);
 
       console.log("7TH REQUEST");
       const response = await axios.post(
-        'http://localhost:8080/oauth2/token',
+        '${API_BASE_URL}/oauth2/token',
         params,
         {
           headers: {

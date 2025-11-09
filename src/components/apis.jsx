@@ -1,7 +1,7 @@
 import axios from "axios"
 import axiosInstance from "../auth/AuthMiddleWear"
 import { data, useNavigate } from "react-router-dom"
-const BASE_URL="http://localhost:8080/api/user"
+const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8080') + "/api/user"
 
 export const GetAllUsers = async () => {
  const navigate=   useNavigate();
@@ -23,7 +23,7 @@ export const GetAllUsers = async () => {
 }
 export const CreateUser = async (values) => {
     try {
-        const create = await axios.post("http://localhost:8080/api/user/createUser", values, {
+        const create = await axios.post(`${BASE_URL}/createUser`, values, {
             headers: {
                 Authorization: undefined, // Explicitly remove
                 'Content-Type': 'application/json'

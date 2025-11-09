@@ -10,6 +10,7 @@ function SignupForm() {
     address:""
   });
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
@@ -21,7 +22,7 @@ function SignupForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8080/api/user/createUser", {
+    const response = await fetch(`${API_BASE_URL}api/user/createUser`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
@@ -29,10 +30,10 @@ function SignupForm() {
 
     if (response.ok) {
       alert("Signup successful!");
-      window.location.href = "http://localhost:5173/login";
+      window.location.href = "/login";
     } else if (response.status === 409) {
       alert("User already exists. Redirecting to login.");
-      window.location.href = "http://localhost:5173/api/login";
+      window.location.href = "/api/login";
     } else {
       alert("Signup failed. Try again.");
     }
