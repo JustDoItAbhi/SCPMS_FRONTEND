@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
             formData.append('password', password);
 
             // ✅ FIXED: Use API_BASE_URL instead of hardcoded localhost
-            const response = await axios.post(`https://scpms-frontend.onrender.com/api/auth/login`, formData, {
+            const response = await axios.post(`http://localhost:8080/api/auth/login`, formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
