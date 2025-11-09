@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
         formData.append('email', email);
         formData.append('password', password);
 
-        const response = await axios.post(`'http://localhost:8080/api/auth/login`, formData, {
+        const response = await axios.post("http://localhost:8080/api/auth/login", formData, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
