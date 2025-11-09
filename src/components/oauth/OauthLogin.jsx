@@ -17,7 +17,7 @@ const OauthLogin = () => {
     console.log("1ST REQUEST");
     
     // ✅ Fixed template literal syntax
-    fetch(`http://localhost:8080/`)
+    fetch("http://localhost:8080/")
       .then(response => {
         if (response.ok) {
           console.log('Backend server is running');

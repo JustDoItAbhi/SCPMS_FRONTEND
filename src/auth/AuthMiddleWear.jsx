@@ -3,7 +3,7 @@ import validateToken from "../components/apps/validateToken";
 
 
 const getBaseURL = () => {
-  return 'https://scpms-frontend.onrender.com';
+  return "https://scpms-frontend.onrender.com";
 };
 
 const axiosInstance = axios.create({

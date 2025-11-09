@@ -13,6 +13,8 @@ const Callback = () => {
   const handleTokenExchange = async (code) => {
     const clientId = import.meta.env.VITE_CLIENT_ID;
     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    console.log("REDIRECT URL ",REDIRECT_URI);
+        console.log("BASE URL ",API_BASE_URL);
     
     console.log("6TH REQUEST", clientId, "secret ", clientSecret);
     try {
@@ -56,7 +58,7 @@ const Callback = () => {
       // navigate("/login");
       return;
     }
-
+    console.log("URL PARAMS ",urlParams);
     if (code) {
       handleTokenExchange(code);
     }

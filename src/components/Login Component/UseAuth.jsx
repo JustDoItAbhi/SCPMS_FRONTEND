@@ -25,6 +25,16 @@ export const AuthProvider = ({ children }) => {
         checkAuthStatus();
     }, []);
 
+    const testing=async()=>{
+        try{
+            const checking=await axios.get("https://scpms-frontend.onrender.com/api/debug/cors");
+            console.log("debug test ", checking.data);
+        }catch(err){
+            console.log(err.message);
+        }
+    }
+    testing();
+
     const checkAuthStatus = async () => {
         try {
             const token = localStorage.getItem('access_token');
