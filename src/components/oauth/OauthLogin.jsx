@@ -41,7 +41,7 @@ const OauthLogin = () => {
     
     console.log("1st step call login oauth2 server REQUEST");
     
-    const authUrl =  window.location.href = `http://localhost:8080/oauth2/authorize?${params}`;
+    const authUrl =  window.location.href = `https://scpms-frontend.onrender.com/oauth2/authorize?${params}`;
     console.log("Redirecting to:", authUrl);
     
     window.location.href = authUrl;

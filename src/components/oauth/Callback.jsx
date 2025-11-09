@@ -28,7 +28,7 @@ const Callback = () => {
         
         // ✅ FIXED: Use proper string interpolation
         const response = await axios.post(
-            'http://localhost:8080/oauth2/token',  // Fixed backticks
+            'https://scpms-frontend.onrender.com/oauth2/token',  // Fixed backticks
             params,
             {
                 headers: {
