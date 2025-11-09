@@ -12,6 +12,9 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // ✅ Use environment variable for API base URL
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
     useEffect(() => {
         checkAuthStatus();
     }, []);
@@ -39,58 +42,59 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-const login = async (email, password) => {
-    console.log("AUTH LOGIN PAGE ")
-    try {
-        const formData = new URLSearchParams();
-        formData.append('email', email);
-        formData.append('password', password);
+    const login = async (email, password) => {
+        console.log("useAUTH LOGIN PAGE ")
+        try {
+            const formData = new URLSearchParams();
+            formData.append('email', email);
+            formData.append('password', password);
 
-        const response = await axios.post('http://localhost:8080/api/auth/login', formData, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            withCredentials: true
-        });
-        
-        console.log("AUTH RESPONSE ", response.data);
-        const { token, user: userData } = response.data;
-        
-        localStorage.setItem('access_token', token);
-        console.log("Token stored in localStorage:", token ? "Yes" : "No");
-        
-        // Decode the token to get the roles
-        const decodedToken = decodeJWT(token);
-        console.log("Decoded token:", decodedToken);
-           const fullEmail = decodedToken.email || "";
-           const username = fullEmail.split('@')[0] || "User";
-        console.log("Extracted username:", username);
+            // ✅ Use environment variable instead of hardcoded URL
+            const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                withCredentials: true
+            });
+            
+            console.log("AUTH RESPONSE ", response.data);
+            const { token, user: userData } = response.data;
+            
+            localStorage.setItem('access_token', token);
+            console.log("Token stored in localStorage:", token ? "Yes" : "No");
+            
+            // Decode the token to get the roles
+            const decodedToken = decodeJWT(token);
+            console.log("Decoded token:", decodedToken);
+            const fullEmail = decodedToken.email || "";
+            const username = fullEmail.split('@')[0] || "User";
+            console.log("Extracted username:", username);
 
-        const completeUserData = {
-            ...userData,
-             username: username,
-            roles: decodedToken.roles || [],
-            grantAuthority: decodedToken.roles 
-        };
-        
-        console.log("Complete user data to store:", completeUserData);
-        
-        // Store user data
-        localStorage.setItem('user', JSON.stringify(completeUserData));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        setUser(completeUserData);
-        
-        return response.data;
-        
-    } catch (error) {
-        console.log("Login error:", error);
-        throw error;
-    }
-};
+            const completeUserData = {
+                ...userData,
+                username: username,
+                roles: decodedToken.roles || [],
+                grantAuthority: decodedToken.roles 
+            };
+            
+            console.log("Complete user data to store:", completeUserData);
+            
+            // Store user data
+            localStorage.setItem('user', JSON.stringify(completeUserData));
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            setUser(completeUserData);
+            
+            return response.data;
+            
+        } catch (error) {
+            console.log("Login error:", error);
+            throw error;
+        }
+    };
 
     const logout = async () => {
         try {
-            await axios.post('http://localhost:8080/api/auth/logout', {}, {
+            await axios.post(`${API_BASE_URL}/api/auth/logout`, {}, {
                 withCredentials: true
             });
         } catch (error) {
