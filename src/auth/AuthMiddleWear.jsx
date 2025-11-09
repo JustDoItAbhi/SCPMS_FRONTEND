@@ -2,8 +2,11 @@ import axios from 'axios';
 import validateToken from "../components/apps/validateToken";
 
 // Create axios instance
+const getBaseURL = () => {
+  return import.meta.env.PROD ? '' : 'http://localhost:8080';
+};
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
+  baseURL: getBaseURL(),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

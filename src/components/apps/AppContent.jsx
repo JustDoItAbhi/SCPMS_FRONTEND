@@ -31,6 +31,7 @@ import CheckOtp from '../PRE-REQUESTS-SIGNUP/SIGNUP-APIS/CheckOtp';
 import TeacherWaitingPage from '../PRE-REQUESTS-SIGNUP/TeacherWaitingPage';
 import ContactUs from '../home/ContactUs';
 import ApproveTeacher from '../ADMIN/ApproveTeacher';
+import EnvDebug from '../ADMIN/EnvDebug';
 
 
 
@@ -66,7 +67,7 @@ function AppContent() {
         <Route path="/GetById/:id" element={<GetById />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/create" element={<CreatingUsers />} />
-        <Route path="/Home" element={<HomePage />} />
+        {/* <Route path="/Home" element={<HomePage />} /> */}
         <Route path="/STUDENTSIGNUP" element={<StudentsSignup />} />
         <Route path="/TEACHERSIGNUP" element={<TeachersSignup />} />
         <Route path="/DELETESTUDENT" element={<DeleteStudent />} />
@@ -82,6 +83,7 @@ function AppContent() {
         <Route path="/ALL-TOPICS" element={<TopicPage />} />
         <Route path="/TEACHER-WAIT" element={<TeacherWaitingPage />} />
         <Route path="/CONTACT-US" element={<ContactUs />} />
+      <Route path="/TESTING" element={<EnvDebug />} />
 
 
                 <Route path="/TEACHER-ROLE" element={
