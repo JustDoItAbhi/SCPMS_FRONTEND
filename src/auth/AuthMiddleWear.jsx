@@ -3,7 +3,7 @@ import validateToken from "../components/apps/validateToken";
 
 
 const getBaseURL = () => {
-  return import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  return 'https://scpms-frontend.onrender.com';
 };
 
 const axiosInstance = axios.create({
