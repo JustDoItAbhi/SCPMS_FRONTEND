@@ -42,18 +42,8 @@ const Callback = () => {
         console.error('Token exchange error:', error.response?.data || error.message);
     }
 };
-      console.log("8TH REQUEST", response);
 
-      // Extract the access token properly
-      const accessToken = response.data.access_token;
-      localStorage.setItem("access_token", accessToken);
-
-      // Redirect to GetList page
-      navigate("/GetById");
-    } catch (error) {
-      console.error('Token exchange error:', error.response?.data || error.message);
-    }
-  };
+     
 
   useEffect(() => {
     console.log("9TH REQUEST");
