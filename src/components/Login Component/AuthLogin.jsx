@@ -41,7 +41,11 @@ const AuthLogin = () => {
 
                 if (userData) {
                     const userId = localStorage.getItem("userId");
-                     console.log("GetUser response:", getUser);
+                    console.log("🔍 FULL API RESPONSE STRUCTURE:", getUser);
+console.log("🔍 rolesList exists:", !!getUser?.data?.rolesList);
+console.log("🔍 rolesList type:", typeof getUser?.data?.rolesList);
+console.log("🔍 rolesList value:", getUser?.data?.rolesList);
+console.log("🔍 rolesList length:", getUser?.data?.rolesList?.length);
                     const getUser = await GetUserById(userId);
                     console.log("userId", userId)
                     // console.log("get user from local , ", getUser.data.rolesList[0]);
