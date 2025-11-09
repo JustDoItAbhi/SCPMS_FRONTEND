@@ -41,7 +41,6 @@ const OauthLogin = () => {
     
     console.log("1st step call login oauth2 server REQUEST");
     
-    // ✅ Use the correct API_BASE_URL
     const authUrl = `${API_BASE_URL}/oauth2/authorize?${params}`;
     console.log("Redirecting to:", authUrl);
     
