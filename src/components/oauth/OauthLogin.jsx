@@ -17,7 +17,7 @@ const OauthLogin = () => {
     console.log("1ST REQUEST");
     
     // ✅ Fixed template literal syntax
-    fetch(`${API_BASE_URL}/`)
+    fetch(`http://localhost:8080/`)
       .then(response => {
         if (response.ok) {
           console.log('Backend server is running');
@@ -35,13 +35,13 @@ const OauthLogin = () => {
     const params = new URLSearchParams({
       response_type: "code",
       client_id: "abhi",
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: 'https://scpms-frontend.onrender.com/callback',
       scope: "openid profile",
     });
     
     console.log("1st step call login oauth2 server REQUEST");
     
-    const authUrl = `${API_BASE_URL}/oauth2/authorize?${params}`;
+    const authUrl =  window.location.href = `http://localhost:8080/oauth2/authorize?${params}`;
     console.log("Redirecting to:", authUrl);
     
     window.location.href = authUrl;

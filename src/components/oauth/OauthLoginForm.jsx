@@ -8,7 +8,7 @@ const OauthLoginForm = () => {
   console.log("4TH REQUEST OAUTH LOGIN FORM")
 
 
-  const oauthUrl = `${API_BASE_URL}/oauth2/authorize?response_type=code&client_id=abhi&redirect_uri=
+  const oauthUrl = `http://localhost:8080/oauth2/authorize?response_type=code&client_id=render&redirect_uri=
   ${REDIRECT_URI}&scope=openid profile`;
 
   return (
