@@ -2,11 +2,8 @@ import axios from 'axios';
 import validateToken from "../components/apps/validateToken";
 
 
-const getBaseURL = "https://scpms-frontend.onrender.com";
-
-
 const axiosInstance = axios.create({
-  baseURL: getBaseURL(),
+  baseURL:  "https://scpms-frontend.onrender.com",
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
