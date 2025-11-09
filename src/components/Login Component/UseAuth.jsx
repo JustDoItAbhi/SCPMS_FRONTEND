@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
   const url = import.meta.env.VITE_API_URL;
   
   if (url === '') {
+    console.log("url ",url);
     return ''; // Relative URLs in production
   }
   
