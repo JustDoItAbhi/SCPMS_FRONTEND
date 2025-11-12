@@ -40,13 +40,16 @@ const AuthLogin = () => {
                 localStorage.setItem("userId", userId);
                 if (userData) {
                     const userId = localStorage.getItem("userId");
+
                     const getUser = await GetUserById(userId);
                     console.log("userId", userId)
                     // console.log("get user from local , ", getUser.data.rolesList[0]);
                     const role = getUser.data.rolesList[0];
                     const userRole = role?.roles || role?.[0];
                     console.log("USER ROLE ", userRole);
+
                     const studentId = localStorage.getItem("studentId");
+
                     if (!studentId && studentId === "undefined") {
                         navigate("/STUDENTSIGNUP")
                     } else if (studentId) {
@@ -57,12 +60,12 @@ const AuthLogin = () => {
                             navigate("/STUDENTSIGNUP");
                         } else if (userRole === "TEACHER") {
                             try {
-                                const teacherId = localStorage.getItem("teacherId");
+                                // const teacherId = localStorage.getItem("teacherId");
                                 const userEmail = localStorage.getItem("userEmail");
-                                if (teacherId) {
-                                    navigate("/TEACHER-PROFILE");
-                                    return; // Important to prevent further execution
-                                }
+                                // if (teacherId) {
+                                //     navigate("/TEACHER-PROFILE");
+                                //     return; // Important to prevent further execution
+                                // }
                                 if (userEmail) {
                                     const getteacherbyemail = await GetTeacherByUserEmail(userEmail);
                                     if (getteacherbyemail) {
