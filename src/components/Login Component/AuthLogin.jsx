@@ -38,6 +38,9 @@ const AuthLogin = () => {
                 console.log("USER ID", userData?.id)
                 const userId = userData?.id
                 localStorage.setItem("userId", userId);
+                console.log("email",userData.email);
+                localStorage.setItem("userEmail",userData.email);
+
                 if (userData) {
                     const userId = localStorage.getItem("userId");
 
@@ -80,8 +83,6 @@ const AuthLogin = () => {
                                 }
                             } catch (error) {
                                 console.error("Error fetching teacher data:", error);
-                                // On error, redirect to signup
-                                navigate("/TEACHERSIGNUP");
                             }
                         }
                     }
