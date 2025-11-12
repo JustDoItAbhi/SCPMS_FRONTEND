@@ -24,14 +24,16 @@ function HomePage() {
                         MENU
                     </button>
                     <h1 className="scpms">
-                        <span>S </span>
-                        <span>C </span>
-                        <span>P </span>
-                        <span>M </span>
-                        <span>S </span>
-                        <br />
-                        <span className="titles">Student Conference Participation Management System </span>    </h1>
-                </div>
+                        <div className="scpms-letters">
+                            <span>S </span>
+                            <span>C </span>
+                            <span>P </span>
+                            <span>M </span>
+                            <span>S </span>
+                        </div>
+                        <span className="titles">Student Conference Participation Management System</span>
+                    </h1>
+                    </div>
 
                 <h2 className="objective">Overview</h2>
                 <p>

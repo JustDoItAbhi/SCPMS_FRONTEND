@@ -84,11 +84,7 @@ function AppContent() {
         <Route path="/TEACHER-WAIT" element={<TeacherWaitingPage />} />
         <Route path="/CONTACT-US" element={<ContactUs />} />
       <Route path="/TESTING" element={<EnvDebug />} />
-
-
-                <Route path="/TEACHER-ROLE" element={
-                  <ApproveTeacher />
-                  } />
+      <Route path="/TEACHER-ROLE" element={<ApproveTeacher /> } />
 
         
         

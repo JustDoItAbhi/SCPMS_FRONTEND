@@ -58,6 +58,19 @@ body {
     transform: translateY(0);
   }
 }
+@media (max-width: 320px) {
+    .scpms-letters {
+        gap: 5px;
+    }
+    
+    .scpms span {
+        font-size: 1.8rem;
+    }
+    
+    .titles {
+        font-size: 0.8rem;
+    }
+}
 p{
   text-align: center;
 }
@@ -73,16 +86,45 @@ p{
   line-height: 1.5;
 }
 @media (max-width: 480px) {
-  .titles {
-    font-size: 1rem;
-    margin-top: 8px;
-  }
+    .topic {
+        height: 60vh;
+        padding: 10px;
+    }
+    
+    .scpms {
+        padding: 0 10px;
+    }
+    
+    .scpms-letters {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .scpms span {
+        font-size: 2.2rem;
+    }
+    
+    .titles {
+        font-size: 0.9rem;
+        margin-top: 6px;
+        padding: 0 5px;
+        line-height: 1;
+        text-wrap: balance;
+    }
+    
+    .buttonMenu {
+        padding: 8px 14px;
+        top: 10px;
+        right: 10px;
+        font-size: 12px;
+    }
 }
 @media (max-width: 768px) {
   .titles {
     font-size: 1.1rem;
     margin-top: 10px;
     padding: 0 5px;
+    text-align: left;
   }
 }
 .buttonMenu{
@@ -216,6 +258,8 @@ p{
 @media (max-width: 768px) {
   .main-title {
     font-size: 36px;
+    margin: 15vmax;
+    padding: 15vh;
   }
 
   .overview,
@@ -235,4 +279,21 @@ p{
     display: flex;
     flex-direction: column;
      list-style-type: none;
+}
+/* @media (max-width: 7px) {
+    .topic {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .scpms {
+        justify-content: center;
+        align-items: center;
+    }
+} */
+
+/* For laptops - keep everything as it is now */
+@media (min-width: 769px) {
+    /* No changes - keep your current styling */
 }
