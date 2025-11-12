@@ -15,11 +15,11 @@ export const AuthProvider = ({ children }) => {
 
        const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
 
-    // console.log("API URL ",API_BASE_URL)
+    console.log("API URL ",API_BASE_URL)
 
-    // console.log("Frontend URL:", window.location.href);
-    // console.log("API_BASE_URL:", API_BASE_URL);
-    // console.log("Full login URL will be:", API_BASE_URL);
+    console.log("Frontend URL:", window.location.href);
+    console.log("API_BASE_URL:", API_BASE_URL);
+    console.log("Full login URL will be:", API_BASE_URL);
 
     useEffect(() => {
         checkAuthStatus();
