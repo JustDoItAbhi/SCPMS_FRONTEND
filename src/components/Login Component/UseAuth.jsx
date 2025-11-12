@@ -12,8 +12,8 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    //    const API_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
-       const API_BASE_URL = 'https://unvocalized-irretrievably-roman.ngrok-free.dev/';
+
+       const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
 
     console.log("API URL ",API_BASE_URL)
 
@@ -25,15 +25,15 @@ export const AuthProvider = ({ children }) => {
         checkAuthStatus();
     }, []);
 
-    // const testing=async()=>{
-    //     try{
-    //         const checking=await axios.get("https://unvocalized-irretrievably-roman.ngrok-free.dev/api/debug/cors");
-    //         console.log("debug test ", checking);
-    //     }catch(err){
-    //         console.log(err.message);
-    //     }
-    // }
-    // testing();
+    const testing=async()=>{
+        try{
+            const checking=await axios.get(`${API_BASE_URL}`/api/debug/cors);
+            console.log("debug test ", checking);
+        }catch(err){
+            console.log(err.message);
+        }
+    }
+    testing();
 
     const checkAuthStatus = async () => {
         try {
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         formData.append('password', password);
                 console.log("ERROR",formData);
 
-        const response = await axios.post("https://unvocalized-irretrievably-roman.ngrok-free.dev/api/auth/login", formData, {
+        const response = await axios.post(`${API_BASE_URL}`, formData, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
@@ -112,7 +112,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post(`https://unvocalized-irretrievably-roman.ngrok-free.dev/api/auth/logout`, {}, {
+            await axios.post(`${API_BASE_URL}/api/auth/logout`, {}, {
                 withCredentials: true
             });
         } catch (error) {

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import validateToken from "../components/apps/validateToken";
 
-
+  const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
 const axiosInstance = axios.create({
-  baseURL:  "https://unvocalized-irretrievably-roman.ngrok-free.dev",
+  baseURL:  `${API_BASE_URL}`,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

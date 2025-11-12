@@ -11,8 +11,8 @@ const Callback = () => {
 
 
   const handleTokenExchange = async (code) => {
-    const clientId = import.meta.env.VITE_CLIENT_ID;
-    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    const clientId = import.meta.env.VITE_DIRECT_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_DIRECT_CLIENT_SECRET
     console.log("REDIRECT URL ",REDIRECT_URI);
         console.log("BASE URL ",API_BASE_URL);
     

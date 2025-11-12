@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const BASE_URL = "https://unvocalized-irretrievably-roman.ngrok-free.dev/api/user"
+const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
+const BASE_URL = `${API_BASE_URL}`+/api/user
 
 export const StudentSendingOtpForSignUP = async (values) => {
     try {
