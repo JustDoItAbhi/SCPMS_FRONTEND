@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     //    const API_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
-       const API_BASE_URL = 'http://localhost:8080';
+       const API_BASE_URL = 'https://unvocalized-irretrievably-roman.ngrok-free.dev/';
 
     console.log("API URL ",API_BASE_URL)
 

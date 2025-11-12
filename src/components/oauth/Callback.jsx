@@ -6,8 +6,8 @@ const Callback = () => {
   const navigate = useNavigate();
   console.log("call back");
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-  const REDIRECT_URI = import.meta.env.PROD ? 'https://unvocalized-irretrievably-roman.ngrok-free.dev'  : 'http://localhost:5173/callback';
+  const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL
+  const REDIRECT_URI = import.meta.env.VITE_DIRECT_REDIRECT_URI 
 
 
   const handleTokenExchange = async (code) => {
