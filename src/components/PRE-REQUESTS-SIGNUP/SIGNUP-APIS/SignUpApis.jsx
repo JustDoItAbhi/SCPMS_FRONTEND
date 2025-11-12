@@ -1,6 +1,6 @@
 import axios from "axios";
 const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
-const BASE_URL = `${API_BASE_URL}`+/api/user
+const BASE_URL = `${API_BASE_URL}/api/user`
 
 export const StudentSendingOtpForSignUP = async (values) => {
     try {
