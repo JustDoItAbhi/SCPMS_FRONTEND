@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import '../oauth/OauthLoginCss.css'
 
 const OauthLogin = () => {
-  // ✅ Correct environment variable access
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-  const REDIRECT_URI = import.meta.env.PROD 
-    ? 'https://scpms-frontend.onrender.com/callback' 
-    : 'http://localhost:5173/callback';
+  const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL
+  const REDIRECT_URI = import.meta.env.VITE_DIRECT_REDIRECT_URI
+
 
   console.log("oauth login");
   console.log("API_BASE_URL:", API_BASE_URL);
@@ -17,7 +15,7 @@ const OauthLogin = () => {
     console.log("1ST REQUEST");
     
     // ✅ Fixed template literal syntax
-    fetch("http://localhost:8080/")
+    fetch(`${API_BASE_URL}/`)
       .then(response => {
         if (response.ok) {
           console.log('Backend server is running');
@@ -35,13 +33,13 @@ const OauthLogin = () => {
     const params = new URLSearchParams({
       response_type: "code",
       client_id: "abhi",
-      redirect_uri: 'https://unvocalized-irretrievably-roman.ngrok-free.dev/callback',
+      redirect_uri: '${REDIRECT_URI}',
       scope: "openid profile",
     });
     
     console.log("1st step call login oauth2 server REQUEST");
     
-    const authUrl =  window.location.href = `https://unvocalized-irretrievably-roman.ngrok-free.dev/oauth2/authorize?${params}`;
+    const authUrl =  window.location.href = `${API_BASE_URL}/oauth2/authorize?${params}`;
     console.log("Redirecting to:", authUrl);
     
     window.location.href = authUrl;

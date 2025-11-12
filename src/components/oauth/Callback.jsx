@@ -28,7 +28,7 @@ const Callback = () => {
         
         // ✅ FIXED: Use proper string interpolation
         const response = await axios.post(
-            'https://unvocalized-irretrievably-roman.ngrok-free.dev/oauth2/token',  // Fixed backticks
+            `${API_BASE_URL}/oauth2/token`,  // Fixed backticks
             params,
             {
                 headers: {

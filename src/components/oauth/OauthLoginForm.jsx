@@ -1,8 +1,8 @@
 import React from 'react';
 
 const OauthLoginForm = () => {
-  const API_BASE_URL = import.meta.env.production.VITE_API_URL || 'http://localhost:8080';
-  const REDIRECT_URI = import.meta.env.PROD ? 'https://scpms-frontend.onrender.com/callback' : 'http://localhost:5173/callback';
+  const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL
+  const REDIRECT_URI = import.meta.env.VITE_DIRECT_REDIRECT_URI
 
 
   console.log("4TH REQUEST OAUTH LOGIN FORM")

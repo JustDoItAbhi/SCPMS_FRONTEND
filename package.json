@@ -1,15 +1,14 @@
 {
   "name": "user-app",
-  "private": true,
+   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite preview --host 0.0.0.0 --port $PORT",
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "render-build": "npm install && npm run build",
-    "start": "vite preview --host 0.0.0.0 --port $PORT"
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tsparticles/engine": "^3.9.1",
