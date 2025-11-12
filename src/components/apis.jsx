@@ -142,7 +142,7 @@ export const GetUserById = async (userId) => {
     try {
         console.log("🔍 Calling GetUserById with userId:", userId);
         const response = await axiosInstance.get(`/api/user/getUserById/${userId}`);
-        console.log("✅ GetUserById response:", response);
+        console.log("✅ GetUserById response:", response.data);
         return response;
     } catch (error) {
         console.error("❌ GetUserById error:", {

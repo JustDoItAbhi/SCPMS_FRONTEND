@@ -15,25 +15,25 @@ export const AuthProvider = ({ children }) => {
 
        const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
 
-    console.log("API URL ",API_BASE_URL)
+    // console.log("API URL ",API_BASE_URL)
 
-    console.log("Frontend URL:", window.location.href);
-    console.log("API_BASE_URL:", API_BASE_URL);
-    console.log("Full login URL will be:", import.meta.env.VITE_BASE_URL);
+    // console.log("Frontend URL:", window.location.href);
+    // console.log("API_BASE_URL:", API_BASE_URL);
+    // console.log("Full login URL will be:", API_BASE_URL);
 
     useEffect(() => {
         checkAuthStatus();
     }, []);
 
-    const testing=async()=>{
-        try{
-            const checking=await axios.get(`${API_BASE_URL}`/api/debug/cors);
-            console.log("debug test ", checking);
-        }catch(err){
-            console.log(err.message);
-        }
-    }
-    testing();
+    // const testing=async()=>{
+    //     try{
+    //         const checking=await axios.get(`${API_BASE_URL}/api/debug/cors`);
+    //         console.log("debug test ", checking.data);
+    //     }catch(err){
+    //         console.log(err.message);
+    //     }
+    // }
+    // testing();
 
     const checkAuthStatus = async () => {
         try {
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         formData.append('password', password);
                 console.log("ERROR",formData);
 
-        const response = await axios.post(`${API_BASE_URL}`, formData, {
+        const response = await  axios.post(`${API_BASE_URL}/api/auth/login`, formData,{
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

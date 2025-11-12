@@ -4,6 +4,8 @@ import '../oauth/OauthLoginCss.css'
 const OauthLogin = () => {
   const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL
   const REDIRECT_URI = import.meta.env.VITE_DIRECT_REDIRECT_URI
+      const clientId = import.meta.env.VITE_DIRECT_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_DIRECT_CLIENT_SECRET
 
 
   console.log("oauth login");
@@ -32,8 +34,8 @@ const OauthLogin = () => {
     console.log("2ND REQUEST");
     const params = new URLSearchParams({
       response_type: "code",
-      client_id: "abhi",
-      redirect_uri: '${REDIRECT_URI}',
+      client_id: clientId,
+      redirect_uri: REDIRECT_URI,
       scope: "openid profile",
     });
     

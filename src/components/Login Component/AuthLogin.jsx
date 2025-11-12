@@ -32,24 +32,18 @@ const AuthLogin = () => {
             console.log("LOGIN RESPONSE ", response);
 
             if (response && response.token) {
-                console.log("Login successful, redirecting...", response);
+                console.log("Login successful, redirecting...", response.data);
 
                 const userData = JSON.parse(localStorage.getItem('user'));
                 console.log("USER ID", userData?.id)
                 const userId = userData?.id
                 localStorage.setItem("userId", userId);
-
-                if (userData && userData.id) {
+                if (userData) {
                     const userId = localStorage.getItem("userId");
-   
-
-            console.log("🔍 Before GetUserById call, userId:", userId);
                     const getUser = await GetUserById(userId);
                     console.log("userId", userId)
                     // console.log("get user from local , ", getUser.data.rolesList[0]);
-              console.log("🔍 FULL API RESPONSE STRUCTURE:", getUser);
-
-                    const role = getUser?.rolesList[0];
+                    const role = getUser.data.rolesList[0];
                     const userRole = role?.roles || role?.[0];
                     console.log("USER ROLE ", userRole);
                     const studentId = localStorage.getItem("studentId");
@@ -65,27 +59,20 @@ const AuthLogin = () => {
                             try {
                                 const teacherId = localStorage.getItem("teacherId");
                                 const userEmail = localStorage.getItem("userEmail");
-
-                                // If we already have teacherId, navigate to profile
                                 if (teacherId) {
                                     navigate("/TEACHER-PROFILE");
                                     return; // Important to prevent further execution
                                 }
-
-                                // If no teacherId but we have email, try to get teacher data
                                 if (userEmail) {
                                     const getteacherbyemail = await GetTeacherByUserEmail(userEmail);
-
                                     if (getteacherbyemail) {
                                         // Store the teacher ID properly
                                         localStorage.setItem("teacherId", getteacherbyemail);
                                         navigate("/TEACHER-PROFILE");
                                     } else {
-                                        // Teacher not found, need to sign up
                                         navigate("/TEACHERSIGNUP");
                                     }
                                 } else {
-                                    // No email found, need to sign up
                                     navigate("/TEACHERSIGNUP");
                                 }
                             } catch (error) {
@@ -99,64 +86,64 @@ const AuthLogin = () => {
             }
 
         } catch (err) {
-                        console.error("Login error:", err);
-                        setError(err.response?.data?.error || err.message || 'Login failed');
-                    } finally {
-                        setLoading(false);
-                    }
-                
-            }
+            console.error("Login error:", err);
+            setError(err.response?.data?.error || err.message || 'Login failed');
+        } finally {
+            setLoading(false);
+        }
 
-                return (
-                    <div className="login-container">
-                        <div className="login-form">
-                            <h2>Welcome Back</h2>
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Enter your email"
-                                    />
-                                </div>
+    }
 
-                                <div className="form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Enter your password"
-                                    />
-                                </div>
-
-                                {error && <div className="error-message">{error}</div>}
-
-                                <button
-                                    type="submit"
-                                    className="login-button"
-                                    disabled={loading}
-                                >
-                                    {loading ? 'Signing in...' : 'Sign In'}
-                                </button>
-                            </form>
-
-                            <div className="login-links">
-                                <a href="/SENDOTP">Forgot Password?</a>
-                                <a href="/SEND-OPT-FOR-SIGNUP">Create Account</a>
-                                {/* <a href="/">Or login with OAuth2</a> */}
-                            </div>
-                        </div>
+    return (
+        <div className="login-container">
+            <div className="login-form">
+                <h2>Welcome Back</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="Enter your email"
+                        />
                     </div>
-                );
-            };
 
-            export default AuthLogin;
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                            placeholder="Enter your password"
+                        />
+                    </div>
+
+                    {error && <div className="error-message">{error}</div>}
+
+                    <button
+                        type="submit"
+                        className="login-button"
+                        disabled={loading}
+                    >
+                        {loading ? 'Signing in...' : 'Sign In'}
+                    </button>
+                </form>
+
+                <div className="login-links">
+                    <a href="/SENDOTP">Forgot Password?</a>
+                    <a href="/SEND-OPT-FOR-SIGNUP">Create Account</a>
+                    {/* <a href="/">Or login with OAuth2</a> */}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default AuthLogin;
