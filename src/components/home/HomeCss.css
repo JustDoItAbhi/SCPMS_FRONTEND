@@ -280,20 +280,8 @@ p{
     flex-direction: column;
      list-style-type: none;
 }
-/* @media (max-width: 7px) {
-    .topic {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .scpms {
-        justify-content: center;
-        align-items: center;
-    }
-} */
 
-/* For laptops - keep everything as it is now */
+
 @media (min-width: 769px) {
     /* No changes - keep your current styling */
 }
