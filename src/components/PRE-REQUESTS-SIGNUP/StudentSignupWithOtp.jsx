@@ -8,32 +8,44 @@ function StudentSignupWithOtp() {
 console.log("SENDING OTP STUDENT SIGN UP PAGE")
     const naviagte = useNavigate();
 
-
     const onFinish = async (values) => {
     try {
-        console.log("Form values:", values);
+        console.log("SENDING OTP STUDENT SIGN UP PAGE - Form values:", values);
         
-        const response = await StudentSendingOtpForSignUP(values);
-        console.log("API Response:", response);
-
-        // Check based on the actual response structure
-        if (response.status === "STUDENTS" || response.data === "STUDENTS") {
-            naviagte("/CHECK-OTP-FOR-SIGNUP");
-        } 
-        else if (response.status === "CREATE PROFILE" || response.data === "CREATE PROFILE") {
-            naviagte("/create");
+        const signUpStudent = await StudentSendingOtpForSignUP(values);
+        console.log("FULL API RESPONSE:", signUpStudent);
+        console.log("Type of response:", typeof signUpStudent);
+        
+        // If it's an object, log its properties
+        if (typeof signUpStudent === 'object') {
+            console.log("Response keys:", Object.keys(signUpStudent));
+            console.log("Response data:", JSON.stringify(signUpStudent, null, 2));
         }
-        else if (response.status === "PLEASE WAIT" || response.data === "PLEASE WAIT") {
+
+        // Check what exactly is returned
+        if (signUpStudent === "PLEASE WAIT") {
+            console.log("Condition 1 matched: PLEASE WAIT");
+            naviagte("/TEACHER-WAIT");
+        } 
+        else if (signUpStudent?.message === "PLEASE WAIT") {
+            console.log("Condition 2 matched: message PLEASE WAIT");
+            naviagte("/TEACHER-WAIT");
+        }
+        else if (signUpStudent?.data === "PLEASE WAIT") {
+            console.log("Condition 3 matched: data PLEASE WAIT");
+            naviagte("/TEACHER-WAIT");
+        }
+        else if (signUpStudent?.status === "PLEASE WAIT") {
+            console.log("Condition 4 matched: status PLEASE WAIT");
             naviagte("/TEACHER-WAIT");
         }
         else {
-            console.warn("Unexpected response:", response);
-            // Handle unexpected response
+            console.log("No PLEASE WAIT condition matched");
+            console.log("Actual value:", signUpStudent);
         }
 
     } catch (err) {
         console.error("Signup error:", err.message);
-        // Show error message to user
     }
 }
 
