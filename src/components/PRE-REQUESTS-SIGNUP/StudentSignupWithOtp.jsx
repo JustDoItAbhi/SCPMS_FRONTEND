@@ -5,29 +5,37 @@ import { useNavigate } from "react-router-dom";
 
 
 function StudentSignupWithOtp() {
-
+console.log("SENDING OTP STUDENT SIGN UP PAGE")
     const naviagte = useNavigate();
 
 
     const onFinish = async (values) => {
-        try {
-            const signUpStudent = await StudentSendingOtpForSignUP(values);
-            console.log(signUpStudent);
+    try {
+        console.log("Form values:", values);
+        
+        const response = await StudentSendingOtpForSignUP(values);
+        console.log("API Response:", response);
 
-            if (signUpStudent==="STUDENTS") {
-                naviagte("/CHECK-OTP-FOR-SIGNUP");
-            }
-            if(signUpStudent==="CREATE PROFILE"){
-                naviagte("/create")
-            }
-            if(signUpStudent==="PLEASE WAIT"){
-                naviagte("/TEACHER-WAIT")
-            }
-
-        } catch (err) {
-            console.log(err.message);
+        // Check based on the actual response structure
+        if (response.status === "STUDENTS" || response.data === "STUDENTS") {
+            naviagte("/CHECK-OTP-FOR-SIGNUP");
+        } 
+        else if (response.status === "CREATE PROFILE" || response.data === "CREATE PROFILE") {
+            naviagte("/create");
         }
+        else if (response.status === "PLEASE WAIT" || response.data === "PLEASE WAIT") {
+            naviagte("/TEACHER-WAIT");
+        }
+        else {
+            console.warn("Unexpected response:", response);
+            // Handle unexpected response
+        }
+
+    } catch (err) {
+        console.error("Signup error:", err.message);
+        // Show error message to user
     }
+}
 
     const onFinishFailed = errorInfo => {
         console.log('Failed:', errorInfo);

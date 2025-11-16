@@ -5,15 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 function StudentsSignup() {
     const [student, setStudent] = useState(null);
-    const [basicForm] = Form.useForm(); // Fixed typo: basicFrom -> basicForm
+    const [basicForm] = Form.useForm(); 
     const navigate = useNavigate();
 
     const userDetails = localStorage.getItem("userId");
 
 
-
-
-    const getData = async (values) => { // Changed parameter name to 'values'
+    const getData = async (values) => { 
         try {
             if (!userDetails) {
                 console.log("ERROR user id not defined", userDetails);

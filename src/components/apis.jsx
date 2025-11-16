@@ -355,3 +355,4 @@ export const registerSubjects = async (id, year, subjects) => {
         throw new Error(err.response?.data?.message || err.message || "Failed to approve teacher role");
     }
 }
+
