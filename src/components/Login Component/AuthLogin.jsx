@@ -32,7 +32,7 @@ const AuthLogin = () => {
             console.log("LOGIN RESPONSE ", response);
 
             if (response && response.token) {
-                console.log("Login successful, redirecting...", response.data);
+                console.log("Login successful, redirecting...", response);
 
                 const userData = JSON.parse(localStorage.getItem('user'));
                 console.log("USER ID", userData?.id)
@@ -52,8 +52,9 @@ const AuthLogin = () => {
                     console.log("USER ROLE ", userRole);
 
                     const studentId = localStorage.getItem("studentId");
+                    console.log("STUDENT ID",studentId);
 
-                    if (!studentId && studentId === "undefined") {
+                    if (!studentId && studentId === "undefined"|| studentId ==null) {
                         navigate("/STUDENTSIGNUP")
                     } else if (studentId) {
                         navigate("/Student-dashboard")
