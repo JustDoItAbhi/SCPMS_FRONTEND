@@ -9,6 +9,7 @@ function StudentsSignup() {
     const navigate = useNavigate();
 
     const userDetails = localStorage.getItem("userId");
+    console.log("USER DETIL FROM STUDENT SIGN UP PAGE",userDetails)
 
 
     const getData = async (values) => { 

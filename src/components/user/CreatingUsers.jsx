@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function CreatingUsers() {
     const [user, setUser] = useState(null);
      const [basicForm] = Form.useForm();
-
+            console.log("sign up PAGE CREATE USER ");
 const navigate=useNavigate();
     const signup = async (values) => {
         try {
@@ -15,7 +15,7 @@ const navigate=useNavigate();
                 ...values,
                  rolesList: values.rolesList ? [values.rolesList] : ['STUDENT']
             };
-            
+            console.log("sign up PAGE CREATE USER ");
             const signupUser = await CreateUser(userData);
             console.log("sign up ", signupUser.data);
             setUser(signupUser);

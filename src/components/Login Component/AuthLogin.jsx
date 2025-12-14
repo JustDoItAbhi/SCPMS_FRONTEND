@@ -92,6 +92,9 @@ const AuthLogin = () => {
                         }
 
                     }
+                    if(userRole=="ADMIN"){
+                        navigate("/USER")
+                    }
 
                 }
             }
