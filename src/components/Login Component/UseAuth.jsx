@@ -15,11 +15,11 @@ export const AuthProvider = ({ children }) => {
 
        const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
 
-    // console.log("API URL ",API_BASE_URL)
+    console.log("API URL ",API_BASE_URL)
 
-    // console.log("Frontend URL:", window.location.href);
-    // console.log("API_BASE_URL:", API_BASE_URL);
-    // console.log("Full login URL will be:", API_BASE_URL);
+    console.log("Frontend URL:", window.location.href);
+    console.log("API_BASE_URL:", API_BASE_URL);
+    console.log("Full login URL will be:", API_BASE_URL);
 
     useEffect(() => {
         checkAuthStatus();
@@ -75,13 +75,12 @@ export const AuthProvider = ({ children }) => {
             console.log("ERROR",formData);
         }
             
-            console.log("AUTH RESPONSE ", response.data);
+            // console.log("AUTH RESPONSE ", response.data);
             const { token, user: userData } = response.data;
             
             localStorage.setItem('access_token', token);
-            console.log("Token stored in localStorage:", token ? "Yes" : "No");
-            
-            // Decode the token to get the roles
+            // console.log("Token stored in localStorage:", token ? "Yes" : "No");
+
             const decodedToken = decodeJWT(token);
             console.log("Decoded token:", decodedToken);
             const fullEmail = decodedToken.email || "";

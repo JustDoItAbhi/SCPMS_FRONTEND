@@ -9,35 +9,28 @@ console.log("SENDING OTP STUDENT SIGN UP PAGE")
     const naviagte = useNavigate();
 
     const onFinish = async (values) => {
+                console.log("otp values",values);
+        const userData={
+        email:values.email,
+        roles:values.roles
+    }
     try {
-        console.log("SENDING OTP STUDENT SIGN UP PAGE - Form values:", values);
+        console.log("SENDING OTP STUDENT SIGN UP PAGE - Form values:", userData);
         
-        const signUpStudent = await StudentSendingOtpForSignUP(values);
+        const signUpStudent = await StudentSendingOtpForSignUP(userData);
         console.log("FULL API RESPONSE:", signUpStudent);
-        console.log("Type of response:", typeof signUpStudent);
-        
-        // If it's an object, log its properties
-        if (typeof signUpStudent === 'object') {
-            console.log("Response keys:", Object.keys(signUpStudent));
-            console.log("Response data:", JSON.stringify(signUpStudent, null, 2));
-        }
 
-        // Check what exactly is returned
         if (signUpStudent === "PLEASE WAIT") {
             console.log("Condition 1 matched: PLEASE WAIT");
             naviagte("/TEACHER-WAIT");
         } 
-        else if (signUpStudent?.message === "PLEASE WAIT") {
-            console.log("Condition 2 matched: message PLEASE WAIT");
-            naviagte("/TEACHER-WAIT");
-        }
-        else if (signUpStudent?.data === "PLEASE WAIT") {
-            console.log("Condition 3 matched: data PLEASE WAIT");
-            naviagte("/TEACHER-WAIT");
-        }
-        else if (signUpStudent?.status === "PLEASE WAIT") {
-            console.log("Condition 4 matched: status PLEASE WAIT");
-            naviagte("/TEACHER-WAIT");
+            if (signUpStudent === "CREATE PROFILE") {
+            console.log("teacher already exists");
+            naviagte("/create");
+        } 
+        else if (signUpStudent === "STUDENTS") {
+            console.log("Condition 2 matched: message STUDENTS");
+            naviagte("/CHECK-OTP-FOR-SIGNUP");
         }
         else {
             console.log("No PLEASE WAIT condition matched");
@@ -45,7 +38,10 @@ console.log("SENDING OTP STUDENT SIGN UP PAGE")
         }
 
     } catch (err) {
-        console.error("Signup error:", err.message);
+        console.error("FULL ERROR OBJECT:", err);
+        console.error("Error response:", err.response);
+        console.error("Error message:", err.message);
+        console.error("Error status:", err.response?.status);
     }
 }
 

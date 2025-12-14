@@ -92,7 +92,8 @@ localStorage.setItem('teacherSubject', subject);
             setLoading(true);
             const subject=localStorage.getItem("teacherSubject")
             const response = await FinishTeacherSignUp(userId,subject);
-            console.log("teacher added ", response);
+            console.log("teacher added ", response.data);
+            localStorage.setItem("teacherId", response.data.teacherId)
             
             if (response) {
                 console.log("✅ TEACHER SIGNUP COMPLETED:", response.data);

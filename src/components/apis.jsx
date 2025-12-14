@@ -1,8 +1,8 @@
 import axios from "axios"
 import axiosInstance from "../auth/AuthMiddleWear"
 import { data, useNavigate } from "react-router-dom"
-const BASE_URL =  'https://unvocalized-irretrievably-roman.ngrok-free.dev/api/user';
-
+const API =   import.meta.env.VITE_DIRECT_BACKEND_URL;
+const BASE_URL=API+"/api/user"
 export const GetAllUsers = async () => {
  const navigate=   useNavigate();
     try {

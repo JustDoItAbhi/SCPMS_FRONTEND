@@ -29,17 +29,17 @@ const AuthLogin = () => {
 
         try {
             const response = await login(formData.email, formData.password);
-            console.log("LOGIN RESPONSE ", response);
+            // console.log("LOGIN RESPONSE ", response);
 
             if (response && response.token) {
-                console.log("Login successful, redirecting...", response);
+                // console.log("Login successful, redirecting...", response);
 
                 const userData = JSON.parse(localStorage.getItem('user'));
                 console.log("USER ID", userData?.id)
                 const userId = userData?.id
                 localStorage.setItem("userId", userId);
-                console.log("email",userData.email);
-                localStorage.setItem("userEmail",userData.email);
+                console.log("email", userData.email);
+                localStorage.setItem("userEmail", userData.email);
 
                 if (userData) {
                     const userId = localStorage.getItem("userId");
@@ -51,42 +51,48 @@ const AuthLogin = () => {
                     const userRole = role?.roles || role?.[0];
                     console.log("USER ROLE ", userRole);
 
-                    const studentId = localStorage.getItem("studentId");
-                    console.log("STUDENT ID",studentId);
+                    if (userRole === "TEACHER") {
+                        console.log("INSIDE TEACHER BLOCK ")
+                        try {
+                            const userEmail = localStorage.getItem("userEmail");
+                            console.log("USER EMAIL FOR TEACHER ", userEmail)
 
-                    if (!studentId && studentId === "undefined"|| studentId ==null) {
-                        navigate("/STUDENTSIGNUP")
-                    } else if (studentId) {
-                        navigate("/Student-dashboard")
-                    }
-                    else {
-                        if (userRole === "STUDENT") {
-                            navigate("/STUDENTSIGNUP");
-                        } else if (userRole === "TEACHER") {
-                            try {
-                                // const teacherId = localStorage.getItem("teacherId");
-                                const userEmail = localStorage.getItem("userEmail");
-                                // if (teacherId) {
-                                //     navigate("/TEACHER-PROFILE");
-                                //     return; // Important to prevent further execution
-                                // }
-                                if (userEmail) {
-                                    const getteacherbyemail = await GetTeacherByUserEmail(userEmail);
-                                    if (getteacherbyemail) {
-                                        // Store the teacher ID properly
-                                        localStorage.setItem("teacherId", getteacherbyemail);
-                                        navigate("/TEACHER-PROFILE");
-                                    } else {
-                                        navigate("/TEACHERSIGNUP");
-                                    }
-                                } else {
-                                    navigate("/TEACHERSIGNUP");
+                            if (userEmail) {
+                                const getteacherbyemail = await GetTeacherByUserEmail(userEmail);
+                                console.log("TEACHER DETAILS", getteacherbyemail)
+                                if (getteacherbyemail) {
+                                    console.log("TEACHER DETAILS", getteacherbyemail)
+                                    localStorage.setItem("teacherId", getteacherbyemail);
+                                    navigate("/TEACHER-PROFILE");
                                 }
-                            } catch (error) {
-                                console.error("Error fetching teacher data:", error);
+                            } else {
+                                navigate("/TEACHERSIGNUP");
+
                             }
+                        } catch (error) {
+                            console.error("Error fetching teacher data:", error);
+                            navigate("/TEACHERSIGNUP");
                         }
                     }
+                    if (userRole == STUDENT) {
+                        try {
+                            const studentId = localStorage.getItem("studentId");
+                            console.log("STUDENT ID", studentId);
+
+                            if (!studentId && studentId === "undefined" || studentId == null) {
+                                navigate("/STUDENTSIGNUP")
+
+                            } else if (studentId) {
+                                navigate("/Student-dashboard")
+                            }
+
+
+                        } catch (err) {
+                            console.log("ERROR", err.message);
+                        }
+
+                    }
+
                 }
             }
 

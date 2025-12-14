@@ -53,7 +53,7 @@ function AppContent() {
         {/* Public routes */}
         <Route path="/" element={<HomePage />} />
         {/* <Route path="/login" element={<AuthLogin />} /> */}
-        <Route path="/signup" element={<SignupForm />} />
+        {/* <Route path="/signup" element={<SignupForm />} /> */}
         <Route path="/callback" element={<Callback />} />
 
         <Route path="/SEND-OPT-FOR-SIGNUP" element={<StudentSignupWithOtp />} /> 
@@ -64,6 +64,7 @@ function AppContent() {
 
         <Route path="/RESETPASSWORD" element={<ResetPassword />} />
         <Route path="/SENDOTP" element={<SendOtpToEmail />} />
+        
         <Route path="/GetById/:id" element={<GetById />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/create" element={<CreatingUsers />} />

@@ -11,13 +11,13 @@ const validateToken = (token) => {
     const now = Date.now();
     const isExpired = now >= expiration;
 
-    console.log("🔍 Token validation:", {
-      issuedAt: new Date(payload.iat * 1000).toLocaleString(),
-      expiresAt: new Date(expiration).toLocaleString(),
-      currentTime: new Date(now).toLocaleString(),
-      isExpired: isExpired,
-      timeUntilExpiry: Math.round((expiration - now) / 1000 / 60) + " minutes"
-    });
+    // console.log("🔍 Token validation:", {
+    //   issuedAt: new Date(payload.iat * 1000).toLocaleString(),
+    //   expiresAt: new Date(expiration).toLocaleString(),
+    //   currentTime: new Date(now).toLocaleString(),
+    //   isExpired: isExpired,
+    //   timeUntilExpiry: Math.round((expiration - now) / 1000 / 60) + " minutes"
+    // });
 
     return {
       valid: !isExpired,
