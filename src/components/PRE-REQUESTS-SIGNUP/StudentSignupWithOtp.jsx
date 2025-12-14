@@ -15,6 +15,7 @@ console.log("SENDING OTP STUDENT SIGN UP PAGE")
         roles:values.roles
     }
     try {
+        console.log("SENDING OTP")
         console.log("SENDING OTP STUDENT SIGN UP PAGE - Form values:", userData);
         
         const signUpStudent = await StudentSendingOtpForSignUP(userData);

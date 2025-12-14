@@ -3,7 +3,7 @@ import axiosInstance from "../../../auth/AuthMiddleWear";
 const API_BASE_URL = import.meta.env.VITE_DIRECT_BACKEND_URL 
 const BASE_URL = `${API_BASE_URL}`
 console.log("BACKEND API", BASE_URL);
-
+console.log("STUDENT SIGN UP PAGE ")
 export const StudentSendingOtpForSignUP = async (values) => {
     try {
         const sendOtp = await axiosInstance.post(`/api/user/StudentSignUp`, values);
