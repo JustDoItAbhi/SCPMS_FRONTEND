@@ -74,7 +74,7 @@ const AuthLogin = () => {
                             navigate("/TEACHERSIGNUP");
                         }
                     }
-                    if (userRole == STUDENT) {
+                    if (userRole == "STUDENT") {
                         try {
                             const studentId = localStorage.getItem("studentId");
                             console.log("STUDENT ID", studentId);
