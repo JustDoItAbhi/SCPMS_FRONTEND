@@ -90,7 +90,7 @@ The platform simplifies the entire process of managing student participation in 
                 <div>
                      <Link to="/CONTACT-US" style={{width:"100vw",color:"white"}}>CONTACT US</Link>
                     <p>
-                        <strong>Address:</strong> 12 Universtistsks Street, City Uzhhorod, Country Uzhhorod
+                        <strong>Address:</strong> 12 Universtistsks Street, City Uzhhorod, Country Ukraine
                     </p>
                     <p>
                         <strong>Phone:</strong> +1 234 567 890
